@@ -1,7 +1,7 @@
 // Getting the container to edit the desired picture
 const demoPictureContainer = document.getElementById("demo-picture-container");
 
-let measurement = "inch";
+let measurement = "INCH";
 let category = "UNISEX";
 displayPicture();
 
@@ -30,39 +30,36 @@ function displayHoodies(event) {
     displayPicture();
 }
 
-function displayYouth(event) {
-    category = event.target.innerText;
-    displayPicture();
-}
-
 // Displaying the picture
 function displayPicture() {
-    if (measurement === "inch") {
+    if (measurement.toLowerCase() === "inch") {
         if (category.toLowerCase() === "unisex") {
-            insertPic();
+            // Location and Name of your picture
+            insertPic("./img/unisex-inch.jpeg");
         } else if (category.toLowerCase() === "womens") {
-            insertPic();
+            insertPic("./img/womens-inch.jpeg");
         } else if (category.toLowerCase() === "hoodies") {
-            insertPic();
-        } else if (category.toLowerCase() === "youth") {
-            insertPic();
+            insertPic("./img/hoodies-inch.jpeg");
         }
-    } else if (measurement === "cm") {
+    } else if (measurement.toLowerCase() === "cm") {
         if (category.toLowerCase() === "unisex") {
             insertPic();
         } else if (category.toLowerCase() === "womens") {
             insertPic();
         } else if (category.toLowerCase() === "hoodies") {
-            insertPic();
-        } else if (category.toLowerCase() === "youth") {
             insertPic();
         }
     }
 }
 
 // Insert the picture
-function insertPic() {
-    demoPictureContainer.innerHTML = `The Photo is About ${category} in ${measurement}`;
+function insertPic(src) {
+    demoPictureContainer.innerHTML = `
+        <div>
+            <img src="${src}" alt="Error" style="width: 100%;">
+            The Photo is About ${category} in ${measurement}
+        </div>
+    `;
 }
 
 // Active elements of category
@@ -71,9 +68,9 @@ let categories = document.getElementsByClassName("category");
 for(const cat of categories) {
     cat.addEventListener("click", function() {
         for(const c of categories) {
-            c.classList.remove("active")
+            c.classList.remove("active-category")
         }
-        this.classList.add("active");
+        this.classList.add("active-category");
     });
 };
 
@@ -83,8 +80,8 @@ let measurements = document.getElementsByClassName("measure");
 for(const meas of measurements) {
     meas.addEventListener("click", function() {
         for(const m of measurements) {
-            m.classList.remove("active");
+            m.classList.remove("active-measure");
         }
-        this.classList.add("active");
+        this.classList.add("active-measure");
     });
 }
