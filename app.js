@@ -1,68 +1,13 @@
-// Getting the container to edit the desired picture
-const demoPictureContainer = document.getElementById("demo-picture-container");
-
-let measurement = "INCH";
-let category = "UNISEX";
-displayPicture();
-
-function displayInch(event) {
-    measurement = event.target.innerText;
-    displayPicture();
+// Showing/Hiding Modal
+function showModal() {
+    document.getElementById("myModal").style.display = "block";
 }
 
-function displayCm(event) {
-    measurement = event.target.innerText;
-    displayPicture();
+function hideModal() {
+    document.getElementById("myModal").style.display = "none";
 }
 
-function displayUnisex(event) {
-    category = event.target.innerText;
-    displayPicture();
-}
-
-function displayWomens(event) {
-    category = event.target.innerText;
-    displayPicture();
-}
-
-function displayHoodies(event) {
-    category = event.target.innerText;
-    displayPicture();
-}
-
-// Displaying the picture
-function displayPicture() {
-    if (measurement.toLowerCase() === "inch") {
-        if (category.toLowerCase() === "unisex") {
-            // Location and Name of your picture
-            insertPic("./img/unisex-inch.jpeg");
-        } else if (category.toLowerCase() === "womens") {
-            insertPic("./img/womens-inch.jpeg");
-        } else if (category.toLowerCase() === "hoodies") {
-            insertPic("./img/hoodies-inch.jpeg");
-        }
-    } else if (measurement.toLowerCase() === "cm") {
-        if (category.toLowerCase() === "unisex") {
-            insertPic();
-        } else if (category.toLowerCase() === "womens") {
-            insertPic();
-        } else if (category.toLowerCase() === "hoodies") {
-            insertPic();
-        }
-    }
-}
-
-// Insert the picture
-function insertPic(src) {
-    demoPictureContainer.innerHTML = `
-        <div>
-            <img src="${src}" alt="Error" style="width: 100%;">
-            The Photo is About ${category} in ${measurement}
-        </div>
-    `;
-}
-
-// Active elements of category
+// Active element of category
 let categories = document.getElementsByClassName("category");
 
 for(const cat of categories) {
@@ -74,7 +19,7 @@ for(const cat of categories) {
     });
 };
 
-// Active elements of measurement
+// Active element of measurement
 let measurements = document.getElementsByClassName("measure");
 
 for(const meas of measurements) {
@@ -84,4 +29,74 @@ for(const meas of measurements) {
         }
         this.classList.add("active-measure");
     });
+}
+
+// Displaying the Picture
+const demoPictureContainer = document.getElementById("demo-picture-container");
+
+let measure = "inch";
+let category = "unisex";
+displayPicture("./img/unisex-inch.jpeg");
+
+function measureInch(event) {
+    measure = event.target.innerText;
+    selectPicture();
+}
+
+function measureCm(event) {
+    measure = event.target.innerText;
+    selectPicture();
+}
+
+function catUnisex(event) {
+    category = event.target.innerText;
+    selectPicture();
+}
+
+function catWomens(event) {
+    category = event.target.innerText;
+    selectPicture();
+}
+
+function catHoodies(event) {
+    category = event.target.innerText;
+    selectPicture();
+}
+
+// Decide which picture to show
+function selectPicture() {
+    if(measure.toLowerCase() === "inch") {
+        switch(category.toLowerCase()) {
+            case "unisex":
+                displayPicture("./img/unisex-inch.jpeg");
+                break;
+            case "womens":
+                displayPicture("./img/womens-inch.jpeg");
+                break;
+            case "hoodies":
+                displayPicture("./img/hoodies-inch.jpeg");
+                break;
+        }
+    } else if(measure.toLowerCase() === "cm") {
+        switch(category.toLowerCase()) {
+            case "unisex":
+                displayPicture("./img/unisex-inch.jpeg");
+                break;
+            case "womens":
+                displayPicture("./img/womens-inch.jpeg");
+                break;
+            case "hoodies":
+                displayPicture("./img/hoodies-inch.jpeg");
+                break;
+        }
+    }
+}
+
+function displayPicture(src) {
+    demoPictureContainer.innerHTML = `
+        <div>
+            <img src="${src}" alt="Error" style="width: 100%;">
+            The Photo is About ${category} in ${measure}
+        </div>
+    `;
 }
