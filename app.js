@@ -36,7 +36,6 @@ const demoPictureContainer = document.getElementById("demo-picture-container");
 
 let measure = "inch";
 let category = "unisex";
-displayPicture("./img/unisex-inch.jpeg");
 
 function measureInch(event) {
     measure = event.target.innerText;
@@ -68,35 +67,26 @@ function selectPicture() {
     if(measure.toLowerCase() === "inch") {
         switch(category.toLowerCase()) {
             case "unisex":
-                displayPicture("./img/unisex-inch.jpeg");
+                demoPictureContainer.src = "./img/unisex-inch.jpeg";
                 break;
             case "womens":
-                displayPicture("./img/womens-inch.jpeg");
+                demoPictureContainer.src = "./img/womens-inch.jpeg";
                 break;
             case "hoodies":
-                displayPicture("./img/hoodies-inch.jpeg");
+                demoPictureContainer.src = "./img/hoodies-inch.jpeg";
                 break;
         }
     } else if(measure.toLowerCase() === "cm") {
         switch(category.toLowerCase()) {
             case "unisex":
-                displayPicture("./img/unisex-inch.jpeg");
+                demoPictureContainer.src = "./img/unisex-inch.jpeg";
                 break;
             case "womens":
-                displayPicture("./img/womens-inch.jpeg");
+                demoPictureContainer.src = "./img/womens-inch.jpeg";
                 break;
             case "hoodies":
-                displayPicture("./img/hoodies-inch.jpeg");
+                demoPictureContainer.src = "./img/hoodies-inch.jpeg";
                 break;
         }
     }
-}
-
-function displayPicture(src) {
-    demoPictureContainer.innerHTML = `
-        <div>
-            <img src="${src}" alt="Error" style="width: 100%;">
-            The Photo is About ${category} in ${measure}
-        </div>
-    `;
 }
